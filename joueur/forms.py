@@ -30,7 +30,6 @@ class CreaPersoForm(ModelForm):
             "alignement",
             "divinite",
             "initiative",
-            "point_carac",
             "classe",
             "race"
         ]
