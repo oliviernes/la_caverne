@@ -13,3 +13,11 @@ def calcul(request):
     form_perso = CreaPersoForm()
 
     return render(request, "joueur/perso.html", { "form_perso": form_perso })
+
+def liste_perso(request):
+    """Liste des personnages de l'utilisateur page"""
+    return render(request, "joueur/liste_perso.html")
+
+def fiche_perso(request):
+    """fiche du personnages de l'utilisateur page"""
+    return render(request, "joueur/fiche_perso.html")
