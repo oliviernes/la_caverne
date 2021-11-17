@@ -1,0 +1,12 @@
+{% extends "joueur/base.html" %}
+
+{% load static %}
+
+{% block welcome %}
+
+  <div class="col-lg-12">
+    {{ user.get_username }}
+  <br>
+</div>
+
+{% endblock %}
