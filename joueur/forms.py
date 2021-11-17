@@ -18,7 +18,5 @@ class CreaPersoForm(ModelForm):
             "alignement",
             "divinite",
             "initiative",
-            "classe",
-            "race"
         ]
 
