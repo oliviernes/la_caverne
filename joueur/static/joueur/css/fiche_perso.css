@@ -1,0 +1,4 @@
+.fiche{
+    background-image: url("{% static 'joueur/images/old-paper-background.jpg' %}");
+    text-align: center;
+}
