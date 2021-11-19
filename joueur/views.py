@@ -78,6 +78,22 @@ def calcul(request):
             force = Carac(nom="force", valeur=forc, personnages=personnages)
             force.save()
 
+            sagesse = Carac(nom="sagesse", valeur=sag, personnages=personnages)
+            sagesse.save()
+
+            intelligence = Carac(nom="intelligence", valeur=int, personnages=personnages)
+            intelligence.save()
+
+            dexterite = Carac(nom="dextérité", valeur=dex, personnages=personnages)
+            dexterite.save()
+
+            constitution = Carac(nom="constitution", valeur=con, personnages=personnages)
+            constitution.save()
+
+            charisme = Carac(nom="charisme", valeur=cha, personnages=personnages)
+            charisme.save()
+
+
             return render(request, "joueur/liste_perso.html")
 
         return redirect("login")
