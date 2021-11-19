@@ -22,17 +22,17 @@ def calcul(request):
 
             forc = int(request.POST['for'])
             sag = int(request.POST['sag'])
-            # int = int(request.POST['int'])
-            # dex = int(request.POST['dex'])
-            # con = int(request.POST['con'])
-            # cha = int(request.POST['cha'])
+            int = int(request.POST['int'])
+            dex = int(request.POST['dex'])
+            con = int(request.POST['con'])
+            cha = int(request.POST['cha'])
             
             carac_liste.append(forc)
             carac_liste.append(sag)
-            # carac_liste.append(int)
-            # carac_liste.append(dex)
-            # carac_liste.append(con)
-            # carac_liste.append(cha)
+            carac_liste.append(int)
+            carac_liste.append(dex)
+            carac_liste.append(con)
+            carac_liste.append(cha)
 
             point_carac_assigned = sum(carac_liste) - 18
 
@@ -43,7 +43,6 @@ def calcul(request):
 
             if form_perso.is_valid():
 
-                breakpoint()
 
                 nom = form_perso.cleaned_data["nom"]
                 age = form_perso.cleaned_data["age"]
