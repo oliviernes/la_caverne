@@ -1,6 +1,6 @@
 pytest==6.2.5
 pytest-django==4.4.0
-black
-flake8
-pylint
-pylint-django
+black==21.11b1
+flake8==4.0.1
+pylint==2.11.1
+pylint-django==2.4.4
