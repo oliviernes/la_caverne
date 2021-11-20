@@ -113,7 +113,22 @@ def calcul(request):
 
 def liste_perso(request):
     """Liste des personnages de l'utilisateur page"""
-    return render(request, "joueur/liste_perso.html")
+
+    if request.user.is_authenticated:
+
+        user_id = request.user.id
+
+        persos = Personnages.objects.filter(utilisateur_id=user_id).order_by(
+            "nom"
+        )
+
+        if len(persos) > 0:
+
+            return render(request, "joueur/liste_perso.html", { "persos": persos })
+
+        return render(request, "joueur/no_persos.html")
+
+    return redirect("login")
 
 def fiche_perso(request):
     """fiche du personnages de l'utilisateur page"""
