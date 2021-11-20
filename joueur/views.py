@@ -18,22 +18,18 @@ def calcul(request):
 
             form_perso = CreaPersoForm(request.POST)
 
-            carac_liste = []
-
-            forc = int(request.POST['for'])
-            sag = int(request.POST['sag'])
-            int = int(request.POST['int'])
-            dex = int(request.POST['dex'])
-            con = int(request.POST['con'])
-            cha = int(request.POST['cha'])
-
-            carac_dic = {"forc": forc, "sag": sag, "int": int, "dex": dex, "con": con, "cha": cha}
+            carac_dic = {"forc": int(request.POST['for']),
+                         "sag": int(request.POST['sag']),
+                         "int": int(request.POST['int']),
+                         "dex": int(request.POST['dex']),
+                         "con": int(request.POST['con']),
+                         "cha": int(request.POST['cha'])
+                         }
 
             point_carac_assigned = -58
 
             for val in carac_dic.values():
                 point_carac_assigned += val
-
 
             if point_carac_assigned > 20:
                 form_perso = CreaPersoForm()
@@ -74,24 +70,27 @@ def calcul(request):
 
             personnages.save()
 
-            force = Carac(nom="force", valeur=forc, personnages=personnages)
+            for key, val in carac_dic.items():
+                carac_dic[key] = val + race.bonus_carac
+
+
+            force = Carac(nom="force", valeur=carac_dic['forc'], personnages=personnages)
             force.save()
 
-            sagesse = Carac(nom="sagesse", valeur=sag, personnages=personnages)
+            sagesse = Carac(nom="sagesse", valeur=carac_dic['sag'], personnages=personnages)
             sagesse.save()
 
-            intelligence = Carac(nom="intelligence", valeur=int, personnages=personnages)
+            intelligence = Carac(nom="intelligence", valeur=carac_dic['int'], personnages=personnages)
             intelligence.save()
 
-            dexterite = Carac(nom="dextérité", valeur=dex, personnages=personnages)
+            dexterite = Carac(nom="dextérité", valeur=carac_dic['dex'], personnages=personnages)
             dexterite.save()
 
-            constitution = Carac(nom="constitution", valeur=con, personnages=personnages)
+            constitution = Carac(nom="constitution", valeur=carac_dic['con'], personnages=personnages)
             constitution.save()
 
-            charisme = Carac(nom="charisme", valeur=cha, personnages=personnages)
+            charisme = Carac(nom="charisme", valeur=carac_dic['cha'], personnages=personnages)
             charisme.save()
-
 
             return render(request, "joueur/liste_perso.html")
 
