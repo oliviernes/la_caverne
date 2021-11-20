@@ -35,7 +35,9 @@
         </div>
 
         {% if points_exceed %}
-            <p>Le total des points de caractéristiques distribués doit être inférieur à 20!</p>
+            <p>Le total des points de caractéristiques distribués doit être inférieur à 20! Tu fais attention et puis c'est tout.</p>
+        {% elif empty_carac %}
+            <p>Chacune des caractéristiques doivent être renseignées pour créer un personnage!!</p>
         {% endif %}
 
         <div class="row">

@@ -19,12 +19,32 @@ def calcul(request):
 
             form_perso = CreaPersoForm(request.POST)
 
-            carac_dic = {"forc": int(request.POST['for']),
-                         "sag": int(request.POST['sag']),
-                         "int": int(request.POST['int']),
-                         "dex": int(request.POST['dex']),
-                         "con": int(request.POST['con']),
-                         "cha": int(request.POST['cha'])
+            forc = request.POST['for']
+            sage = request.POST['sag']
+            inte = request.POST['int']
+            dext = request.POST['dex']
+            cons = request.POST['con']
+            char = request.POST['cha']
+
+            carac_list = []
+
+            carac_list.append(forc)
+            carac_list.append(sage)
+            carac_list.append(inte)
+            carac_list.append(dext)
+            carac_list.append(cons)
+            carac_list.append(char)
+
+            for carac in carac_list:
+                if carac == "":
+                    return render(request, "joueur/perso.html", { "form_perso": form_perso, "empty_carac": True })
+
+            carac_dic = {"forc": int(forc),
+                         "sag": int(sage),
+                         "int": int(inte),
+                         "dex": int(dext),
+                         "con": int(cons),
+                         "cha": int(char)
                          }
 
             point_carac_assigned = -58
