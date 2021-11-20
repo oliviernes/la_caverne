@@ -11,7 +11,7 @@
 
   {% for perso in persos %}
 
-    <p>{{ perso.nom }}</p>
+    <a href="{% url 'fiche_perso' my_perso_id=perso.id %}">{{ perso.nom }}</a>
 
   {% endfor %}
 
