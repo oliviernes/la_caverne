@@ -196,3 +196,30 @@ def fiche_perso(request, my_perso_id):
         return render(request, "joueur/not_allowed.html")
 
     return redirect("login")
+
+
+def delete(request, pk):
+    """To delete user's personnages"""
+    if request.user.is_authenticated:
+
+        user_id = request.user.id
+
+        persos = Personnages.objects.filter(utilisateur_id=user_id)
+
+        persos_ids = []
+
+        for perso in persos:
+            persos_ids.append(perso.id)
+
+        if pk in persos_ids:
+
+            perso = Personnages.objects.get(id=pk)
+            nom_perso = perso.nom
+
+            perso.delete()
+
+            return render(request, "joueur/perso_deleted.html", {"nom_perso": nom_perso})
+
+        return render(request, "joueur/not_allowed_to_delete.html")
+
+    return redirect("login")

@@ -12,6 +12,7 @@
   {% for perso in persos %}
 
     <a href="{% url 'fiche_perso' my_perso_id=perso.id %}">{{ perso.nom }}</a>
+    <button class="btn btn-warning"><a href="{% url 'delete' pk=perso.id %}">Supprimer ce personnage</a></button></br>
 
   {% endfor %}
 
