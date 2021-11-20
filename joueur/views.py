@@ -14,6 +14,7 @@ def calcul(request):
 
         if request.user.is_authenticated:
 
+            user_id = request.user.id
             user = request.user
 
             form_perso = CreaPersoForm(request.POST)
@@ -103,7 +104,12 @@ def calcul(request):
             vol = Def(nom="vol", valeur=defence_value, personnages=personnages)
             vol.save()
 
-            return render(request, "joueur/liste_perso.html")
+            persos = Personnages.objects.filter(utilisateur_id=user_id).order_by(
+                "nom"
+            )
+
+            return render(request, "joueur/liste_perso.html", { "persos": persos })
+
 
         return redirect("login")
 
