@@ -1,0 +1,11 @@
+{% extends "joueur/base.html" %}
+
+{% load static %}
+
+{% block welcome %}
+
+    <p>Vous n'avez pas encore de personnages enregistrés</p>
+
+    <a href="{% url 'calcul' %}">Enregistrer un 1er personnage.</a>
+
+{% endblock %}
