@@ -33,6 +33,11 @@
         <div class="row">
             <h3>Caractéristiques : </h3>
         </div>
+
+        {% if points_exceed %}
+            <p>Le total des points de caractéristiques distribués doit être inférieur à 20!</p>
+        {% endif %}
+
         <div class="row">
 
             <div class="col-lg-2 form-group">
