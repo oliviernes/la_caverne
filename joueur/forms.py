@@ -1,8 +1,7 @@
 """Forms for search view"""
-from django import forms
 from django.forms import ModelForm
 
-from .models import Classe, Race, Personnages, Def, Carac
+from .models import Personnages
 
 
 class CreaPersoForm(ModelForm):
