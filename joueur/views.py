@@ -26,15 +26,14 @@ def calcul(request):
             dex = int(request.POST['dex'])
             con = int(request.POST['con'])
             cha = int(request.POST['cha'])
-            
-            carac_liste.append(forc)
-            carac_liste.append(sag)
-            carac_liste.append(int)
-            carac_liste.append(dex)
-            carac_liste.append(con)
-            carac_liste.append(cha)
 
-            point_carac_assigned = sum(carac_liste) - 18
+            carac_dic = {"forc": forc, "sag": sag, "int": int, "dex": dex, "con": con, "cha": cha}
+
+            point_carac_assigned = -18
+
+            for val in carac_dic.values():
+                point_carac_assigned += val
+
 
             if point_carac_assigned > 20:
                 form_perso = CreaPersoForm()
