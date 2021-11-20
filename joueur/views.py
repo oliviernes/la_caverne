@@ -92,6 +92,17 @@ def calcul(request):
             charisme = Carac(nom="charisme", valeur=carac_dic['cha'], personnages=personnages)
             charisme.save()
 
+            defence_value = 10 + classe.bonus_def
+
+            vig = Def(nom="vig", valeur=defence_value, personnages=personnages)
+            vig.save()
+            ca = Def(nom="ca", valeur=defence_value, personnages=personnages)
+            ca.save()
+            ref = Def(nom="ref", valeur=defence_value, personnages=personnages)
+            ref.save()
+            vol = Def(nom="vol", valeur=defence_value, personnages=personnages)
+            vol.save()
+
             return render(request, "joueur/liste_perso.html")
 
         return redirect("login")
