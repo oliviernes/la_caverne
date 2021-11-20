@@ -29,7 +29,7 @@ def calcul(request):
 
             carac_dic = {"forc": forc, "sag": sag, "int": int, "dex": dex, "con": con, "cha": cha}
 
-            point_carac_assigned = -18
+            point_carac_assigned = -58
 
             for val in carac_dic.values():
                 point_carac_assigned += val
