@@ -130,6 +130,26 @@ def liste_perso(request):
 
     return redirect("login")
 
-def fiche_perso(request):
+def fiche_perso(request, my_perso_id):
     """fiche du personnages de l'utilisateur page"""
-    return render(request, "joueur/fiche_perso.html")
+
+    if request.user.is_authenticated:
+
+        user_id = request.user.id
+
+        persos = Personnages.objects.filter(utilisateur_id=user_id)
+
+        persos_ids = []
+
+        for perso in persos:
+            persos_ids.append(perso.id)
+
+        if my_perso_id in persos_ids:
+
+            perso = Personnages.objects.get(id=my_perso_id)
+
+            return render(request, "joueur/fiche_perso.html", { "perso": perso })
+
+        return render(request, "joueur/not_allowed.html")
+
+    return redirect("login")
