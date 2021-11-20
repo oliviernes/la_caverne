@@ -57,9 +57,7 @@ class EmailLoginForm(AuthenticationForm):
         password = self.cleaned_data.get("password")
 
         if username and password:
-            self.user_cache = authenticate(
-                username=username, password=password
-            )
+            self.user_cache = authenticate(username=username, password=password)
             if self.user_cache is None:
                 raise forms.ValidationError(
                     "Saisissez un email et un mot de passe valides. Remarquez que chacun de ces champs est sensible à la casse (différenciation des majuscules/minuscules)."

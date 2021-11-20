@@ -3,9 +3,10 @@ from django.shortcuts import render, redirect
 # Create your views here.
 
 from .forms import CreaPersoForm
-from .models import (Classe, Race, Personnages, Def, Carac)
+from .models import Classe, Race, Personnages, Def, Carac
 
 import pdb
+
 
 def calcul(request):
     """Display calcul results and save user's personnage information."""
@@ -19,12 +20,12 @@ def calcul(request):
 
             form_perso = CreaPersoForm(request.POST)
 
-            forc = request.POST['for']
-            sage = request.POST['sag']
-            inte = request.POST['int']
-            dext = request.POST['dex']
-            cons = request.POST['con']
-            char = request.POST['cha']
+            forc = request.POST["for"]
+            sage = request.POST["sag"]
+            inte = request.POST["int"]
+            dext = request.POST["dex"]
+            cons = request.POST["con"]
+            char = request.POST["cha"]
 
             carac_list = []
 
@@ -37,15 +38,20 @@ def calcul(request):
 
             for carac in carac_list:
                 if carac == "":
-                    return render(request, "joueur/perso.html", { "form_perso": form_perso, "empty_carac": True })
+                    return render(
+                        request,
+                        "joueur/perso.html",
+                        {"form_perso": form_perso, "empty_carac": True},
+                    )
 
-            carac_dic = {"forc": int(forc),
-                         "sag": int(sage),
-                         "int": int(inte),
-                         "dex": int(dext),
-                         "con": int(cons),
-                         "cha": int(char)
-                         }
+            carac_dic = {
+                "forc": int(forc),
+                "sag": int(sage),
+                "int": int(inte),
+                "dex": int(dext),
+                "con": int(cons),
+                "cha": int(char),
+            }
 
             point_carac_assigned = -58
 
@@ -55,10 +61,13 @@ def calcul(request):
             if point_carac_assigned > 20:
                 form_perso = CreaPersoForm()
 
-                return render(request, "joueur/perso.html", { "form_perso": form_perso, "points_exceed": True })
+                return render(
+                    request,
+                    "joueur/perso.html",
+                    {"form_perso": form_perso, "points_exceed": True},
+                )
 
             if form_perso.is_valid():
-
 
                 nom = form_perso.cleaned_data["nom"]
                 age = form_perso.cleaned_data["age"]
@@ -71,8 +80,8 @@ def calcul(request):
 
                 point_carac = 20 - point_carac_assigned
 
-                classe = Classe.objects.get(nom=request.POST['classe'])
-                race = Race.objects.get(nom=request.POST['race'])
+                classe = Classe.objects.get(nom=request.POST["classe"])
+                race = Race.objects.get(nom=request.POST["race"])
 
             personnages = Personnages(
                 nom=nom,
@@ -86,31 +95,42 @@ def calcul(request):
                 point_carac=point_carac,
                 classe=classe,
                 race=race,
-                utilisateur=user
-                )
+                utilisateur=user,
+            )
 
             personnages.save()
 
             for key, val in carac_dic.items():
                 carac_dic[key] = val + race.bonus_carac
 
-
-            force = Carac(nom="force", valeur=carac_dic['forc'], personnages=personnages)
+            force = Carac(
+                nom="force", valeur=carac_dic["forc"], personnages=personnages
+            )
             force.save()
 
-            sagesse = Carac(nom="sagesse", valeur=carac_dic['sag'], personnages=personnages)
+            sagesse = Carac(
+                nom="sagesse", valeur=carac_dic["sag"], personnages=personnages
+            )
             sagesse.save()
 
-            intelligence = Carac(nom="intelligence", valeur=carac_dic['int'], personnages=personnages)
+            intelligence = Carac(
+                nom="intelligence", valeur=carac_dic["int"], personnages=personnages
+            )
             intelligence.save()
 
-            dexterite = Carac(nom="dextérité", valeur=carac_dic['dex'], personnages=personnages)
+            dexterite = Carac(
+                nom="dextérité", valeur=carac_dic["dex"], personnages=personnages
+            )
             dexterite.save()
 
-            constitution = Carac(nom="constitution", valeur=carac_dic['con'], personnages=personnages)
+            constitution = Carac(
+                nom="constitution", valeur=carac_dic["con"], personnages=personnages
+            )
             constitution.save()
 
-            charisme = Carac(nom="charisme", valeur=carac_dic['cha'], personnages=personnages)
+            charisme = Carac(
+                nom="charisme", valeur=carac_dic["cha"], personnages=personnages
+            )
             charisme.save()
 
             defence_value = 10 + classe.bonus_def
@@ -124,18 +144,16 @@ def calcul(request):
             vol = Def(nom="vol", valeur=defence_value, personnages=personnages)
             vol.save()
 
-            persos = Personnages.objects.filter(utilisateur_id=user_id).order_by(
-                "nom"
-            )
+            persos = Personnages.objects.filter(utilisateur_id=user_id).order_by("nom")
 
-            return render(request, "joueur/liste_perso.html", { "persos": persos })
-
+            return render(request, "joueur/liste_perso.html", {"persos": persos})
 
         return redirect("login")
 
     form_perso = CreaPersoForm()
 
-    return render(request, "joueur/perso.html", { "form_perso": form_perso })
+    return render(request, "joueur/perso.html", {"form_perso": form_perso})
+
 
 def liste_perso(request):
     """Liste des personnages de l'utilisateur page"""
@@ -144,17 +162,16 @@ def liste_perso(request):
 
         user_id = request.user.id
 
-        persos = Personnages.objects.filter(utilisateur_id=user_id).order_by(
-            "nom"
-        )
+        persos = Personnages.objects.filter(utilisateur_id=user_id).order_by("nom")
 
         if len(persos) > 0:
 
-            return render(request, "joueur/liste_perso.html", { "persos": persos })
+            return render(request, "joueur/liste_perso.html", {"persos": persos})
 
         return render(request, "joueur/no_persos.html")
 
     return redirect("login")
+
 
 def fiche_perso(request, my_perso_id):
     """fiche du personnages de l'utilisateur page"""
@@ -174,7 +191,7 @@ def fiche_perso(request, my_perso_id):
 
             perso = Personnages.objects.get(id=my_perso_id)
 
-            return render(request, "joueur/fiche_perso.html", { "perso": perso })
+            return render(request, "joueur/fiche_perso.html", {"perso": perso})
 
         return render(request, "joueur/not_allowed.html")
 

@@ -22,9 +22,7 @@ class TestLogin:
 
     @mark.django_db
     def test_login_valid_user(self):
-        User.objects.create_user(
-            "john", "lennon@thebeatles.com", "johnpassword"
-        )
+        User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
 
         response_login = self.client.login(
             username="lennon@thebeatles.com", password="johnpassword"
@@ -53,9 +51,7 @@ class TestLogin:
     @mark.django_db
     def test_login_wrong_password(self):
 
-        User.objects.create_user(
-            "john", "lennon@thebeatles.com", "johnpassword"
-        )
+        User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
 
         response_login = self.client.login(
             username="lennon@thebeatles.com", password="wrongpassword"
@@ -148,9 +144,7 @@ class TestSignup:
     @mark.django_db
     def test_signup_user_email_already_used(self):
 
-        User.objects.create_user(
-            "john", "lennon@thebeatles.com", "johnpassword"
-        )
+        User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
 
         response = self.client.post(
             "/signup/",

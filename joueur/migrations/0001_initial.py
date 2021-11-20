@@ -15,60 +15,128 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Classe',
+            name="Classe",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=50)),
-                ('bonus_def', models.IntegerField()),
-                ('pdv', models.IntegerField()),
-                ('recuperation', models.IntegerField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(max_length=50)),
+                ("bonus_def", models.IntegerField()),
+                ("pdv", models.IntegerField()),
+                ("recuperation", models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
-            name='Race',
+            name="Race",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=50)),
-                ('bonus_carac', models.IntegerField()),
-                ('vitesse_dep', models.IntegerField()),
-                ('cat_taille', models.CharField(max_length=50)),
-                ('vision', models.BooleanField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(max_length=50)),
+                ("bonus_carac", models.IntegerField()),
+                ("vitesse_dep", models.IntegerField()),
+                ("cat_taille", models.CharField(max_length=50)),
+                ("vision", models.BooleanField()),
             ],
         ),
         migrations.CreateModel(
-            name='Personnages',
+            name="Personnages",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=50)),
-                ('age', models.IntegerField()),
-                ('sex', models.BooleanField()),
-                ('taille', models.IntegerField()),
-                ('poids', models.IntegerField()),
-                ('alignement', models.CharField(max_length=100)),
-                ('divinite', models.CharField(max_length=100)),
-                ('initiative', models.IntegerField()),
-                ('point_carac', models.IntegerField()),
-                ('classe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='joueur.classe')),
-                ('race', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='joueur.race')),
-                ('utilisateur', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(max_length=50)),
+                ("age", models.IntegerField()),
+                ("sex", models.BooleanField()),
+                ("taille", models.IntegerField()),
+                ("poids", models.IntegerField()),
+                ("alignement", models.CharField(max_length=100)),
+                ("divinite", models.CharField(max_length=100)),
+                ("initiative", models.IntegerField()),
+                ("point_carac", models.IntegerField()),
+                (
+                    "classe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="joueur.classe"
+                    ),
+                ),
+                (
+                    "race",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="joueur.race"
+                    ),
+                ),
+                (
+                    "utilisateur",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Def',
+            name="Def",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=50)),
-                ('valeur', models.IntegerField()),
-                ('personnages', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='joueur.personnages')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(max_length=50)),
+                ("valeur", models.IntegerField()),
+                (
+                    "personnages",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="joueur.personnages",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Carac',
+            name="Carac",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=50)),
-                ('valeur', models.IntegerField()),
-                ('personnages', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='joueur.personnages')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(max_length=50)),
+                ("valeur", models.IntegerField()),
+                (
+                    "personnages",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="joueur.personnages",
+                    ),
+                ),
             ],
         ),
     ]

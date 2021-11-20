@@ -4,6 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
+
 class Classe(models.Model):
     "Record classe model"
 
@@ -32,10 +33,7 @@ class Race(models.Model):
 class Personnages(models.Model):
     "Record person model"
 
-    GENDER = (
-    ('M', 'mâle'),
-    ('F', 'femelle')
-    )
+    GENDER = (("M", "mâle"), ("F", "femelle"))
 
     nom = models.CharField(max_length=50)
     age = models.IntegerField()

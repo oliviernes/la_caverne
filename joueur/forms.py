@@ -4,6 +4,7 @@ from django.forms import ModelForm
 
 from .models import Classe, Race, Personnages, Def, Carac
 
+
 class CreaPersoForm(ModelForm):
     "Create personnage form"
 
@@ -19,4 +20,3 @@ class CreaPersoForm(ModelForm):
             "divinite",
             "initiative",
         ]
-
