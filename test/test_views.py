@@ -307,3 +307,58 @@ class TestCalcul:
 
         assert response_post.status_code == 302
 
+    @mark.django_db
+    def test_save_character_with_force_not_provided(self):
+
+        User.objects.create_user(
+            "john", "lennon@thebeatles.com", "johnpassword"
+        )
+
+        self.client.login(
+            username="lennon@thebeatles.com", password="johnpassword"
+        )
+
+        guerrier = Classe.objects.create(nom="Guerrier", bonus_def=5, pdv=100, recuperation=50)
+        guerrier.save()
+
+        gaulois = Race.objects.create(nom="Gaulois", bonus_carac=5, vitesse_dep=8, cat_taille=10, vision=False)
+        gaulois.save()
+
+        data = urlencode(
+            {
+                "nom": "Asterix",
+                "age": 30,
+                "sex": "M",
+                "taille": 150,
+                "poids": 50,
+                "alignement": "sanglier",
+                "divinite": "Toutatix",
+                "initiative": 7,
+                "classe": "Guerrier",
+                "race": "Gaulois",
+                "for": "",
+                "sag": 11,
+                "int": 11,
+                "dex": 11,
+                "con": 11,
+                "cha": 11,
+                'my_perso': 'Enregistrer le personnage'
+            }
+        )
+
+
+        response_post = self.client.post(
+            reverse("calcul"),
+            data,
+            content_type="application/x-www-form-urlencoded",
+        )
+
+
+        assert response_post.status_code == 200
+        assert len(response_post.context["form_perso"].fields) == 8
+        assert (
+            response_post.context["empty_carac"] == True
+        )
+        assert response_post.context["form_perso"].fields['nom'].label == 'Nom'
+        assert response_post.templates[0].name == "joueur/perso.html"
+
