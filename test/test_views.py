@@ -221,10 +221,8 @@ class TestCalcul:
         )
 
         guerrier = Classe.objects.create(nom="Guerrier", bonus_def=5, pdv=100, recuperation=50)
-        guerrier.save()
 
         gaulois = Race.objects.create(nom="Gaulois", bonus_carac=5, vitesse_dep=8, cat_taille=10, vision=False)
-        gaulois.save()
 
         data = urlencode(
             {
@@ -271,10 +269,8 @@ class TestCalcul:
     def test_save_character_with_user_logged_out(self):
 
         guerrier = Classe.objects.create(nom="Guerrier", bonus_def=5, pdv=100, recuperation=50)
-        guerrier.save()
 
         gaulois = Race.objects.create(nom="Gaulois", bonus_carac=5, vitesse_dep=8, cat_taille=10, vision=False)
-        gaulois.save()
 
         data = urlencode(
             {
@@ -319,10 +315,8 @@ class TestCalcul:
         )
 
         guerrier = Classe.objects.create(nom="Guerrier", bonus_def=5, pdv=100, recuperation=50)
-        guerrier.save()
 
         gaulois = Race.objects.create(nom="Gaulois", bonus_carac=5, vitesse_dep=8, cat_taille=10, vision=False)
-        gaulois.save()
 
         data = urlencode(
             {
@@ -374,10 +368,8 @@ class TestCalcul:
         )
 
         guerrier = Classe.objects.create(nom="Guerrier", bonus_def=5, pdv=100, recuperation=50)
-        guerrier.save()
 
         gaulois = Race.objects.create(nom="Gaulois", bonus_carac=5, vitesse_dep=8, cat_taille=10, vision=False)
-        gaulois.save()
 
         data = urlencode(
             {
