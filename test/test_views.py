@@ -2,11 +2,17 @@ from pytest import mark
 
 from django.test import Client
 from django.contrib.auth.models import User
+from django.urls import reverse
+
+from joueur.models import Classe, Race, Personnages, Def, Carac
+
+from urllib.parse import urlencode
 
 ####################
 #   login view     #
 ####################
 
+import pdb
 
 class TestLogin:
 
@@ -194,3 +200,68 @@ def test_logout_view():
     assert response.status_code == 200
     assert response.templates[0].name == "registration/logged_out.html"
     assert response.templates[1].name == "joueur/base.html"
+
+#################
+#   calcul view #
+#################
+
+class TestCalcul:
+
+    client = Client()
+
+    @mark.django_db
+    def test_save_character_with_user_logged_in(self):
+
+        User.objects.create_user(
+            "john", "lennon@thebeatles.com", "johnpassword"
+        )
+
+        self.client.login(
+            username="lennon@thebeatles.com", password="johnpassword"
+        )
+
+        guerrier = Classe.objects.create(nom="Guerrier", bonus_def=5, pdv=100, recuperation=50)
+        guerrier.save()
+
+        gaulois = Race.objects.create(nom="Gaulois", bonus_carac=5, vitesse_dep=8, cat_taille=10, vision=False)
+        gaulois.save()
+
+        data = urlencode(
+            {
+                "nom": "Asterix",
+                "age": 30,
+                "sex": "M",
+                "taille": 150,
+                "poids": 50,
+                "alignement": "sanglier",
+                "divinite": "Toutatix",
+                "initiative": 7,
+                "classe": "Guerrier",
+                "race": "Gaulois",
+                "for": 10,
+                "sag": 11,
+                "int": 11,
+                "dex": 11,
+                "con": 11,
+                "cha": 11,
+                'my_perso': 'Enregistrer le personnage'
+            }
+        )
+
+
+        response_post = self.client.post(
+            reverse("calcul"),
+            data,
+            content_type="application/x-www-form-urlencoded",
+        )
+
+        assert response_post.status_code == 200
+        assert len(response_post.context["persos"]) == 1
+        assert (
+            response_post.context["persos"][0].nom
+            == "Asterix"
+        )
+        assert (
+            response_post.context["persos"][0].initiative == 7
+        )
+        assert response_post.templates[0].name == "joueur/liste_perso.html"
