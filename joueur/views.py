@@ -190,8 +190,16 @@ def fiche_perso(request, my_perso_id):
         if my_perso_id in persos_ids:
 
             perso = Personnages.objects.get(id=my_perso_id)
+            defence = Def.objects.filter(personnages=perso)
+            carac = Carac.objects.filter(personnages=perso)
 
-            return render(request, "joueur/fiche_perso.html", {"perso": perso})
+            context = {
+                "perso": perso,
+                "defence": defence,
+                "carac": carac
+            }
+
+            return render(request, "joueur/fiche_perso.html", context)
 
         return render(request, "joueur/not_allowed.html")
 
@@ -199,7 +207,7 @@ def fiche_perso(request, my_perso_id):
 
 
 def delete(request, pk):
-    """To delete user's personnages"""
+    """To delete user's characters"""
     if request.user.is_authenticated:
 
         user_id = request.user.id
