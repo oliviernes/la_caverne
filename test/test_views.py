@@ -454,3 +454,21 @@ class TestCalcul:
         assert response_get.status_code == 200
         assert response_get.templates[0].name == "joueur/liste_perso.html"
 
+
+    @mark.django_db
+    def test_get_no_persos_page(self):
+
+        user = User.objects.create_user(
+            "john", "lennon@thebeatles.com", "johnpassword"
+        )
+
+        self.client.login(
+            username="lennon@thebeatles.com", password="johnpassword"
+        )
+
+        response_get = self.client.get(reverse("liste_perso"))
+
+        assert response_get.status_code == 200
+        assert response_get.templates[0].name == "joueur/no_persos.html"
+
+
