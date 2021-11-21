@@ -418,6 +418,13 @@ class TestCalcul:
         assert response_get.status_code == 200
         assert response_get.templates[0].name == "joueur/perso.html"
 
+#####################
+#  Liste_perso view #
+#####################
+
+class TestListePerso:
+
+    client = Client()
 
     @mark.django_db
     def test_get_liste_perso_page(self):
@@ -502,3 +509,63 @@ class TestCalcul:
 
         assert response_get.status_code == 302
 
+#####################
+#  fiche_perso view #
+#####################
+
+class TestFichePerso:
+
+    client = Client()
+
+    @mark.django_db
+    def test_get_fiche_perso_page(self):
+
+        user = User.objects.create_user(
+            "john", "lennon@thebeatles.com", "johnpassword"
+        )
+
+        self.client.login(
+            username="lennon@thebeatles.com", password="johnpassword"
+        )
+
+        guerrier = Classe.objects.create(nom="Guerrier", bonus_def=5, pdv=100, recuperation=50)
+
+        gaulois = Race.objects.create(nom="Gaulois", bonus_carac=5, vitesse_dep=8, cat_taille=10, vision=False)
+
+        asterix = Personnages.objects.create(
+            nom="Astérix",
+            age=30,
+            sex="M",
+            taille=150,
+            poids=50,
+            alignement="sanglier",
+            divinite="Toutatix",
+            initiative=7,
+            point_carac=10,
+            classe=guerrier,
+            race=gaulois,
+            utilisateur=user
+        )
+
+        Carac.objects.create(nom="Charisme", valeur=12, personnages=asterix)
+        Def.objects.create(nom="Vigueur", valeur=10, personnages=asterix)
+
+        response_post = self.client.post(
+            reverse("fiche_perso", kwargs={"my_perso_id": asterix.id})
+        )
+
+        assert response_post.status_code == 200
+        assert (
+            response_post.context["perso"].nom
+            == "Astérix"
+        )
+        assert len(response_post.context["carac"]) == 1
+        assert (
+            response_post.context["carac"][0].nom == "Charisme"
+        )
+
+        assert len(response_post.context["defence"]) == 1
+        assert (
+            response_post.context["defence"][0].nom == "Vigueur"
+        )
+        assert response_post.templates[0].name == "joueur/fiche_perso.html"
