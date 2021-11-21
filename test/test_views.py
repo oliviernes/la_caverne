@@ -418,3 +418,11 @@ class TestCalcul:
         assert response_post.templates[0].name == "joueur/perso.html"
 
 
+    @mark.django_db
+    def test_get_calcul_page(self):
+
+        response_get = self.client.get(reverse("calcul"))
+
+        assert response_get.status_code == 200
+        assert response_get.templates[0].name == "joueur/perso.html"
+
