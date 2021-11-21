@@ -11,9 +11,21 @@
     <div class="row">
       <p>age: {{ perso.age }}</p>
     </div>
-    
-    
-    
+    <div class="row">
+      <p>Classe: {{ perso.classe.nom }}</p>
+    </div>
+    <div class="row">
+      <p>Les caractéristiques:</p>
+      {% for cara in carac %}
+        <p>{{ cara.nom }}: {{ cara.valeur }}</p>
+      {% endfor %}
+    </div>
+    <div class="row">
+      <p>Les défenses:</p>
+      {% for def in defence %}
+        <p>{{ def.nom }}: {{ def.valeur }}</p>
+      {% endfor %}
+    </div>
   <br>
   </div>
 
