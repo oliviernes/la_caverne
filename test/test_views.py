@@ -472,3 +472,33 @@ class TestCalcul:
         assert response_get.templates[0].name == "joueur/no_persos.html"
 
 
+    @mark.django_db
+    def test_get_liste_perso_page_user_not_logged_in(self):
+
+        user = User.objects.create_user(
+            "john", "lennon@thebeatles.com", "johnpassword"
+        )
+
+        guerrier = Classe.objects.create(nom="Guerrier", bonus_def=5, pdv=100, recuperation=50)
+
+        gaulois = Race.objects.create(nom="Gaulois", bonus_carac=5, vitesse_dep=8, cat_taille=10, vision=False)
+
+        guerrier = Personnages.objects.create(
+            nom="Astérix",
+            age=30,
+            sex="M",
+            taille=150,
+            poids=50,
+            alignement="sanglier",
+            divinite="Toutatix",
+            initiative=7,
+            point_carac=10,
+            classe=guerrier,
+            race=gaulois,
+            utilisateur=user
+        )
+
+        response_get = self.client.get(reverse("liste_perso"))
+
+        assert response_get.status_code == 302
+
