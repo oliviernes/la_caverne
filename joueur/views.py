@@ -59,7 +59,6 @@ def calcul(request):
                 point_carac_assigned += val
 
             if point_carac_assigned > 20:
-                form_perso = CreaPersoForm()
 
                 return render(
                     request,
