@@ -752,3 +752,39 @@ class TestDelete:
 
         assert response_post.status_code == 200
         assert response_post.templates[0].name == "joueur/not_allowed_to_delete.html"
+
+
+    @mark.django_db
+    def test_delete_character_with_user_logged_out(self):
+
+        user = User.objects.create_user(
+            "john", "lennon@thebeatles.com", "johnpassword"
+        )
+
+        guerrier = Classe.objects.create(nom="Guerrier", bonus_def=5, pdv=100, recuperation=50)
+
+        gaulois = Race.objects.create(nom="Gaulois", bonus_carac=5, vitesse_dep=8, cat_taille=10, vision=False)
+
+        asterix = Personnages.objects.create(
+            nom="Astérix",
+            age=30,
+            sex="M",
+            taille=150,
+            poids=50,
+            alignement="sanglier",
+            divinite="Toutatix",
+            initiative=7,
+            point_carac=10,
+            classe=guerrier,
+            race=gaulois,
+            utilisateur=user
+        )
+
+        Carac.objects.create(nom="Charisme", valeur=12, personnages=asterix)
+        Def.objects.create(nom="Vigueur", valeur=10, personnages=asterix)
+
+        response_post = self.client.post(
+            reverse("delete", kwargs={"pk": asterix.id})
+        )
+
+        assert response_post.status_code == 302
