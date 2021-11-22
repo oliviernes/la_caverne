@@ -418,6 +418,16 @@ class TestCalcul:
         assert response_get.status_code == 200
         assert response_get.templates[0].name == "joueur/perso.html"
 
+
+    @mark.django_db
+    def test_get_home_page(self):
+
+        response_get = self.client.get("/")
+
+        assert response_get.status_code == 200
+        assert response_get.templates[0].name == "joueur/perso.html"
+        assert response_get.templates[1].name == "joueur/base.html"
+
 #####################
 #  Liste_perso view #
 #####################
