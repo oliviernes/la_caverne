@@ -192,11 +192,7 @@ def fiche_perso(request, my_perso_id):
             defence = Def.objects.filter(personnages=perso)
             carac = Carac.objects.filter(personnages=perso)
 
-            context = {
-                "perso": perso,
-                "defence": defence,
-                "carac": carac
-            }
+            context = {"perso": perso, "defence": defence, "carac": carac}
 
             return render(request, "joueur/fiche_perso.html", context)
 
@@ -225,7 +221,9 @@ def delete(request, pk):
 
             perso.delete()
 
-            return render(request, "joueur/perso_deleted.html", {"nom_perso": nom_perso})
+            return render(
+                request, "joueur/perso_deleted.html", {"nom_perso": nom_perso}
+            )
 
         return render(request, "joueur/not_allowed_to_delete.html")
 
