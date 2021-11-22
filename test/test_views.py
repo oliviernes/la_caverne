@@ -660,7 +660,7 @@ class TestFichePerso:
 
 
 #####################
-#  fiche_perso view #
+#    delete view    #
 #####################
 
 
