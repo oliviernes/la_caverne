@@ -134,13 +134,13 @@ def calcul(request):
 
             defence_value = 10 + classe.bonus_def
 
-            vig = Def(nom="vig", valeur=defence_value, personnages=personnages)
+            vig = Def(nom="Vigueur", valeur=defence_value, personnages=personnages)
             vig.save()
-            ca = Def(nom="ca", valeur=defence_value, personnages=personnages)
+            ca = Def(nom="Armure", valeur=defence_value, personnages=personnages)
             ca.save()
-            ref = Def(nom="ref", valeur=defence_value, personnages=personnages)
+            ref = Def(nom="Réflexe", valeur=defence_value, personnages=personnages)
             ref.save()
-            vol = Def(nom="vol", valeur=defence_value, personnages=personnages)
+            vol = Def(nom="Volonté", valeur=defence_value, personnages=personnages)
             vol.save()
 
             persos = Personnages.objects.filter(utilisateur_id=user_id).order_by("nom")
