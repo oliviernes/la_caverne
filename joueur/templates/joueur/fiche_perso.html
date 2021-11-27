@@ -15,18 +15,33 @@
       <p>Classe: {{ perso.classe.nom }}</p>
     </div>
     <div class="row">
-      <p>Les caractéristiques:</p>
-      {% for cara in carac %}
-        <p>{{ cara.nom }}: {{ cara.valeur }}</p>
-      {% endfor %}
+      <div class="col-lg-12">
+        <div class="row">
+          <p>Les caractéristiques:</p>
+        </div>
+        <div class="row">
+          {% for cara in carac %}
+            <div class="col-lg-2">
+              <p>{{ cara.nom }}: {{ cara.valeur }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
     <div class="row">
-      <p>Les défenses:</p>
-      {% for def in defence %}
-        <p>{{ def.nom }}: {{ def.valeur }}</p>
-      {% endfor %}
+      <div class="col-lg-12">
+        <div class="row">
+          <p>Les défenses:</p>
+        </div>
+        <div class="row">
+          {% for def in defence %}
+            <div class="col-lg-3">
+              <p>{{ def.nom }}: {{ def.valeur }}</p>
+            </div>
+          {% endfor %}
+        </div>
+        <br>
     </div>
-  <br>
   </div>
 
 {% endblock %}
