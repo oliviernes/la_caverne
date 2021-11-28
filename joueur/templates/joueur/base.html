@@ -11,6 +11,8 @@
 
   </head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'joueur/css/fiche_perso.css' %}" rel="stylesheet">
   <body>
     <div class="container">
       <!-- Navigation -->
@@ -43,7 +45,7 @@
       </div>
         <!-- Masthead -->
       <div class="row">
-        <section class="col col-lg-12 masthead2 text-black ">         
+        <section class="fiche col col-lg-12 masthead2 text-black ">
               {% block welcome %}{% endblock %}         
         </section>
       </div>

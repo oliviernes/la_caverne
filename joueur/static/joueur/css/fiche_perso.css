@@ -1,5 +1,5 @@
 .fiche{
-    background-image: url("{% static 'joueur/images/old-paper-background.jpg' %}");
+    background-image: url("../images/old-paper-background.jpg");
     text-align: center;
 }
 
