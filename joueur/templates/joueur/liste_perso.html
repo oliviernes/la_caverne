@@ -4,23 +4,25 @@
 
 {% block welcome %}
 
-<div class="col-lg-12">
-  <div class="row">
-    <div class="col-lg-12">
-        {{ user.get_username }}
-      <br>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-lg-12">
-      {% for perso in persos %}
-
-        <a href="{% url 'fiche_perso' my_perso_id=perso.id %}">{{ perso.nom }}</a>
-        <button class="btn btn-warning"><a href="{% url 'delete' pk=perso.id %}">Supprimer ce personnage</a></button></br>
-
-      {% endfor %}
-    </div>
+<div class="row">
+  <div class="col col-lg-12">
+      {{ user.get_username }}
+    <br>
   </div>
 </div>
+
+<div class="row">
+  <div class="col col-lg-12">
+    {% for perso in persos %}
+    <div class="row">
+      <div class="col col-lg-12">
+        <a href="{% url 'fiche_perso' my_perso_id=perso.id %}">{{ perso.nom }}</a>
+        <button class="btn btn-warning"><a href="{% url 'delete' pk=perso.id %}">Supprimer ce personnage</a></button></br>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
 {% endblock %}
