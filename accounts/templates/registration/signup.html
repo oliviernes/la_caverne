@@ -1,13 +1,24 @@
 {% extends "joueur/base.html" %}
 
 {% block welcome %}
-  <div>
-    <h2 id="signup_title">Création de compte:</h2>
-    <br>
+<div class="row">
+  <div class="col col-lg-12">
+        <h2 id="signup_title">Création de compte:</h2>
+
+    </div>
+</div>
+<div class="row">
+  <div class="col col-lg-12">
     <form action="{% url 'signup' %}" method="post">
       {% csrf_token %}
       {{ form }}
-      <button class="btn btn-primary" type="submit">S'inscrire</button>
+      <div class="row">
+        <div class="col col-lg-12">
+          <button class="btn btn-primary" type="submit">S'inscrire</button>
+        </div>
+      </div>
     </form>
   </div>
+</div>
+
 {% endblock %}

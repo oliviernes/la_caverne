@@ -3,13 +3,15 @@
 {% load static %}
 
 {% block welcome %}
-<div class="col-lg-12">
-    <div class="row">
-        <div class="col-lg-12">
-            <p>Vous n'avez pas encore de personnages enregistrés</p>
 
-            <a href="{% url 'calcul' %}">Enregistrer un 1er personnage.</a>
-        </div>
+<div class="row">
+    <div class="col col-lg-12">
+    <p>Vous n'avez pas encore de personnages enregistrés</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col col-lg-12">
+        <a href="{% url 'calcul' %}">Enregistrer un 1er personnage.</a>
     </div>
 </div>
 {% endblock %}
