@@ -1,6 +1,6 @@
 FROM postgres
 #création BDD
-ENV POSTGRES_DB postgres 
+ENV POSTGRES_DB perso 
 #connection
 ENV POSTGRES_PASSWORD docker
 
