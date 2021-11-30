@@ -25,7 +25,7 @@ services:
       - pytest_network
     depends_on:
       - "db"
-    command: ["./wait-for-it.sh", "db:5532", "pytest", "-v", "la_caverne/test/test_views.py"]
+    command: ["/bin/sh/wait-for-it.sh", "db:5532", "pytest", "-v", "la_caverne/test/test_views.py"]
 
   adminer:
     image: adminer
