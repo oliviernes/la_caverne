@@ -10,5 +10,7 @@ RUN git clone https://github.com/oliviernes/la_caverne.git
 
 COPY la_caverne/devops/docker_files/wait-for-it.sh /bin/sh
 
+ENTRYPOINT ["/bin/sh/wait-for-it.sh"]
+
 #RUN py.test --junitxml results.xml la_caverne/test/test_views.py
-CMD tail -f /dev/null
+CMD [pytest", "-v", "/usr/src/app/la_caverne/test/test_views.py"]
