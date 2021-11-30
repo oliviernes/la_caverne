@@ -1,36 +1,39 @@
-version: '3.1'
+version: "3.1"
 
 services:
 
   db:
     build: ./database
-    container_name: database
+    container_name: "database"
     restart: always
     ports: 
-      - 5532:5432
+      - "5432:5532"
     environment:
-      POSTGRES_USER: olivierx
-      POSTGRES_PASSWORD: XXXX
-      POSTGRES_DATABASE: perso
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: postgres
     networks:
       - pytest_network
 
   pytest:
     build: ./jenkins_ci
-    container_name: pytest
+    container_name: "pytest"
     restart: always
     ports:
-      - 8280:8080
+      - "8280:8080"
     networks:
       - pytest_network
+    depends_on:
+      - "db"
+#    command: ["wait-for-it.sh", "db:5532", "pytest", "-v", "la_caverne/test/test_views.py"]
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8180:8080
+      - "8180:8080"
 
 networks:
   pytest_network:
 
-volumes:
+#volumes:
