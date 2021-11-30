@@ -8,5 +8,5 @@ RUN /usr/local/bin/python -m pip install --upgrade pip && \
    
 RUN git clone https://github.com/oliviernes/la_caverne.git
 
-RUN py.test --junitxml results.xml la_caverne/test/test_views.py
+#RUN py.test --junitxml results.xml la_caverne/test/test_views.py
 CMD tail -f /dev/null
