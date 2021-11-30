@@ -8,4 +8,4 @@ RUN /usr/local/bin/python -m pip install --upgrade pip && \
    
 RUN git clone https://github.com/oliviernes/la_caverne.git
 
-CMD python la_caverne/test/test_views.py >> la_caverne/test/reports.txt
+CMD pytest la_caverne/test/test_views.py >> la_caverne/test/reports.txt
