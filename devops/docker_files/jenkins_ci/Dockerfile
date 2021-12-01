@@ -8,11 +8,4 @@ RUN /usr/local/bin/python -m pip install --upgrade pip && \
    
 RUN git clone https://github.com/oliviernes/la_caverne.git
 
-COPY la_caverne/devops/docker_files/wait-for-it.sh /bin/sh
-
-#ENTRYPOINT ["/bin/sh/wait-for-it.sh"]
-
-#RUN pytest -v /usr/src/app/la_caverne/test/test_views.py
-
-#RUN py.test --junitxml results.xml la_caverne/test/test_views.py
-CMD pytest -v /usr/src/app/la_caverne/test/test_views.py
+#CMD pytest -v /usr/src/app/la_caverne/test/test_views.py
