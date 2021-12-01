@@ -79,3 +79,8 @@ class NewVisitorTest(LiveServerTestCase):
         divinite.click()
         divinite.send_keys("Toutatix")
 
+        time.sleep(1)
+
+        initiative = self.browser.find_element_by_name("initiative")
+        initiative.click()
+        initiative.send_keys("10")
