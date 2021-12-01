@@ -84,3 +84,13 @@ class NewVisitorTest(LiveServerTestCase):
         initiative = self.browser.find_element_by_name("initiative")
         initiative.click()
         initiative.send_keys("10")
+
+        time.sleep(1)
+
+        classe = self.browser.find_element_by_name("classe")
+        classe.click()
+
+        time.sleep(1)
+
+        option = self.browser.find_elements_by_tag_name("option")
+        option[2].click()
