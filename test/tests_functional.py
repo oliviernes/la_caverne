@@ -33,4 +33,6 @@ class NewVisitorTest(LiveServerTestCase):
         time.sleep(1)
 
         self.assertIn("caverne", self.browser.title)
+        first_link_text = self.browser.find_element_by_tag_name("a").text
+        self.assertIn("La Cave", first_link_text)
 
