@@ -73,3 +73,9 @@ class NewVisitorTest(LiveServerTestCase):
         alignement.click()
         alignement.send_keys("menhir")
 
+        time.sleep(1)
+
+        divinite = self.browser.find_element_by_name("divinite")
+        divinite.click()
+        divinite.send_keys("Toutatix")
+
