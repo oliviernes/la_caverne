@@ -19,7 +19,7 @@ pipeline {
             agent {any 'docker_files_pytest'}
             steps {
                 //Exécute les tests views et fonctionnels
-                sh "pytest test --junitxmlm test/output.xml"
+                sh "pytest -v /usr/src/app/la_caverne/test/test_views.py"
             }
         }
     }
