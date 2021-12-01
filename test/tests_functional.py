@@ -9,6 +9,7 @@ from selenium.webdriver.common.keys import Keys
 class NewVisitorTest(LiveServerTestCase):
     """Class testing a new user visiting the la caverne website"""
 
+    fixtures = ["dumpy_caverne_fixture"]
 
     def setUp(self):
 
@@ -36,3 +37,20 @@ class NewVisitorTest(LiveServerTestCase):
         first_link_text = self.browser.find_element_by_tag_name("a").text
         self.assertIn("La Cave", first_link_text)
 
+        # She choose to enter the inputs of her first character:
+
+        nom = self.browser.find_element_by_name("nom")
+        nom.click()
+        nom.send_keys("Astérix")
+
+        time.sleep(1)
+
+        age = self.browser.find_element_by_name("age")
+        age.click()
+        age.send_keys("32")
+
+        time.sleep(1)
+
+        sex = self.browser.find_element_by_name("sex")
+        sex.click()
+        sex.send_keys("M")
