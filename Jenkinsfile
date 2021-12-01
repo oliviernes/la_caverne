@@ -1,12 +1,11 @@
 pipeline {
-    agent none
-    //alacon
+    agent any
     stages {
         
         stage('Build') {
             agent {
                 //Vérifie que toutes les images requises pour le build sont présentes dans le docker
-                docker {
+                any {
                     image 'docker_files_db'
                     image 'docker_files_pytest'
                 }
