@@ -20,7 +20,7 @@ pipeline {
             steps {
                 //Exécute les tests views et fonctionnels
                 sh "pwd"
-                sh "pytest -v /usr/src/app/la_caverne/test/test_views.py"
+                sh "pytest -v test/test_views.py"
             }
         }
     }
