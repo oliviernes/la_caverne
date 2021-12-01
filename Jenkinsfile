@@ -22,7 +22,5 @@ pipeline {
                 bat "pytest test --junitxmlm test/output.xml"
             }
         }
-        
-        stage('Deploy') {}
     }
 }
