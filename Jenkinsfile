@@ -15,7 +15,7 @@ pipeline {
         stage('Test') {
             steps {
                 //Exécute les tests views et fonctionnels
-                sh "pytest -v /usr/src/app/la_caverne/test/test_views.py"
+                bat "pytest test --junitxmlm test/output.xml"
             }
         }
         
