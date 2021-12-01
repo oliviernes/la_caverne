@@ -66,3 +66,10 @@ class NewVisitorTest(LiveServerTestCase):
         poids = self.browser.find_element_by_name("poids")
         poids.click()
         poids.send_keys("45")
+
+        time.sleep(1)
+
+        alignement = self.browser.find_element_by_name("alignement")
+        alignement.click()
+        alignement.send_keys("menhir")
+
