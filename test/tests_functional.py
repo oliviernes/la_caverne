@@ -60,3 +60,9 @@ class NewVisitorTest(LiveServerTestCase):
         taille = self.browser.find_element_by_name("taille")
         taille.click()
         taille.send_keys("145")
+
+        time.sleep(1)
+
+        poids = self.browser.find_element_by_name("poids")
+        poids.click()
+        poids.send_keys("45")
