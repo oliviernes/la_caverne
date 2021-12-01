@@ -1,9 +1,15 @@
 {% extends "joueur/base.html" %}
 
 {% block welcome %}
-  <div>
+<div class="row">
+  <div class="col col-lg-12">
     <p>Vous êtes déconnecté.  </p>
-    <br>
+  </div>
+</div>
+<div class="row">
+  <div class="col col-lg-12">
     <a href="{% url 'login' %}">Cliquez ici pour vous reconnecter.</a>
   </div>
+</div>
+ 
 {% endblock %}

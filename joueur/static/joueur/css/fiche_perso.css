@@ -1,4 +1,12 @@
 .fiche{
-    background-image: url("{% static 'joueur/images/old-paper-background.jpg' %}");
+    background-image: url("../images/old-paper-background.jpg");
     text-align: center;
+}
+
+.nav-item{
+    padding:2px;
+}
+
+#nav_caverne{
+    background-color: beige;
 }
