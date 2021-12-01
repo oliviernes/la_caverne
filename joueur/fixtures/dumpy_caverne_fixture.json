@@ -1,0 +1,22 @@
+[
+{
+    "model": "joueur.classe",
+    "pk": 1,
+    "fields": {
+        "nom": "Guerrier",
+        "bonus_def": 2,
+        "pdv": 15,
+        "recuperation": 9
+    }
+},
+{
+    "model": "joueur.race",
+    "pk": 1,
+    "fields": {
+        "nom": "Elf",
+        "bonus_carac": 2,
+        "vitesse_dep": 7,
+        "vision": true
+    }
+}
+]
