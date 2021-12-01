@@ -54,3 +54,9 @@ class NewVisitorTest(LiveServerTestCase):
         sex = self.browser.find_element_by_name("sex")
         sex.click()
         sex.send_keys("M")
+
+        time.sleep(1)
+
+        taille = self.browser.find_element_by_name("taille")
+        taille.click()
+        taille.send_keys("145")
