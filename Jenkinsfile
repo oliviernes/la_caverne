@@ -10,11 +10,14 @@ pipeline {
                     image 'docker_files_pytest'
                 }
             }
+            steps {
+                echo "Hello World"
+            }
         }
         
         stage('Test') {
             agent {any 'docker_files_pytest'}
-            steps{
+            steps {
                 //Exécute les tests views et fonctionnels
                 bat "pytest test --junitxmlm test/output.xml"
             }
