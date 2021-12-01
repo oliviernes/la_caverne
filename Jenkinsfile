@@ -13,7 +13,7 @@ pipeline {
         }
         
         stage('Test') {
-            agent {docker 'docker_files_pytest'}
+            agent {any 'docker_files_pytest'}
             steps{
                 //Exécute les tests views et fonctionnels
                 bat "pytest test --junitxmlm test/output.xml"
