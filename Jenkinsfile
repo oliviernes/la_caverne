@@ -19,7 +19,7 @@ pipeline {
             agent {any 'docker_files_pytest'}
             steps {
                 //Exécute les tests views et fonctionnels
-                bat "pytest test --junitxmlm test/output.xml"
+                sh "pytest test --junitxmlm test/output.xml"
             }
         }
     }
