@@ -25,7 +25,7 @@ services:
       - db_network
     depends_on:
       - "db"
-    command: ["pytest -v la_caverne/test/test_views.py"]
+#    command: ["pytest -v la_caverne/test/test_views.py"]
 
   adminer:
     image: adminer
