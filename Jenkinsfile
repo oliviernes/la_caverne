@@ -1,5 +1,6 @@
 pipeline {
     agent none
+    //alacon
     stages {
         
         stage('Build') {
