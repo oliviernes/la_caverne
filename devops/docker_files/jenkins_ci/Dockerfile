@@ -13,4 +13,4 @@ COPY la_caverne/devops/docker_files/wait-for-it.sh /bin/sh
 ENTRYPOINT ["/bin/sh/wait-for-it.sh"]
 
 #RUN py.test --junitxml results.xml la_caverne/test/test_views.py
-#CMD ["db:5432", "pytest", "-v", "/usr/src/app/la_caverne/test/test_views.py"]
+CMD ["pytest", "-v", "/usr/src/app/la_caverne/test/test_views.py"]
