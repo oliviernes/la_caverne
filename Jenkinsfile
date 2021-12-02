@@ -7,7 +7,7 @@ pipeline {
             steps {
                 echo "Hello World!"
                 sh "echo Hello from the shell"
-                sh './integration/integration.sh'
+                sudo sh './integration/integration.sh'
             }
         }
         stage('Deploy') {
