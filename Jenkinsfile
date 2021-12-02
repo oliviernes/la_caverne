@@ -22,7 +22,7 @@ pipeline {
                 sh "pwd"
                 sh "pytest -v test/test_views.py"
             }
-        }
-    }*/
+        }*/
+    }
 }
 
