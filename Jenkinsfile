@@ -1,11 +1,11 @@
 pipeline {
-    agent any
+    agent none
     stages {
         
         stage('Build') {
             agent {
                 //Vérifie que toutes les images requises pour le build sont présentes dans le docker
-                any {
+                docker {
                     image 'docker_files_db'
                     image 'docker_files_pytest'
                 }
@@ -14,9 +14,9 @@ pipeline {
                 echo "Hello World"
             }
         }
-        
+/*        
         stage('Test') {
-            agent {any 'docker_files_pytest'}
+            agent {docker 'docker_files_pytest'}
             steps {
                 //Exécute les tests views et fonctionnels
                 sh "pwd"
@@ -25,3 +25,4 @@ pipeline {
         }
     }
 }
+*/
