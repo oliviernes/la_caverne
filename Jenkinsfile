@@ -1,12 +1,9 @@
 #!groovy
 
 node {
+    stage 'Test'
+        sudo sh './integration/integration.sh'
 
-    try {
-        stage 'Test'
-            sudo sh './integration/integration.sh'
-
-        stage 'Deploy'
-            sh './deployment/deploy_prod.sh'
-    }
+    stage 'Deploy'
+        sh './deployment/deploy_prod.sh'
 }
