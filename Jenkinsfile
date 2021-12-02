@@ -1,7 +1,7 @@
 #!groovy
 
 pipeline {
-    agent { label 'jenkins_pipeline' }
+    agent any
     stages {
         stage('build') {
             steps {
