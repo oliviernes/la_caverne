@@ -7,7 +7,8 @@ pipeline {
             steps {
                 echo "Hello World!"
                 sh "echo Hello from the shell"
-                sudo sh './integration/integration.sh'
+                sh "chmod +x -R ${env.WORKSPACE}"
+                sh './integration/integration.sh'
             }
         }
         stage('Deploy') {
