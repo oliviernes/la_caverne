@@ -1,9 +1,21 @@
 #!groovy
 
-node {
-    stage 'Test'
-        sh './integration/integration.sh'
-
-    stage 'Deploy'
-        sh './deployment/deploy_prod.sh'
+pipeline {
+    agent { label 'jenkins_pipeline' }
+    stages {
+        stage('build') {
+            steps {
+                echo "Hello World!"
+                sh "echo Hello from the shell"
+                sh './integration/integration.sh'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh './deployment/deploy_prod.sh'
+            }
+        }
+    }
 }
+
+
