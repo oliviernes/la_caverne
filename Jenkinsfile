@@ -23,6 +23,6 @@ pipeline {
                 sh "pytest -v test/test_views.py"
             }
         }
-    }
+    }*/
 }
-*/
+
