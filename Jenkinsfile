@@ -12,7 +12,7 @@ node {
 
         stage 'Test'
 
-            sh './integration/integration.sh'
+            sudo sh './integration/integration.sh'
 
         stage 'Deploy'
             sh './deployment/deploy_prod.sh'
